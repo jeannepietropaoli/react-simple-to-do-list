@@ -1,11 +1,10 @@
 import React from "react";
 
-function Editor() {
+function Editor(props) {
+    const currentNote = props.notes.find(note => note.selected)
+
     return(
-        <div className="editor">
-            Note 1 
-            blablabla
-        </div>
+        <textarea className="editor" onChange={(e) => props.editNote(e, props.currentNoteId)} value={currentNote ? currentNote.body : "nope nothing"}/>
     )
 }
 
