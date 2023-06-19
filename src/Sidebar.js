@@ -3,9 +3,14 @@ import React from "react";
 function Sidebar(props) {
     const noteTitleElements = props.notes.map(note => {
         const styles = {
-            backgroundColor : note.selected ? "red" : "green"
+            backgroundColor : note.selected ? "darkGray" : "transparent"
         }
-        return <h3 style={styles} key={note.id} onClick={() => props.selectTask(note.id)}>{note.title}</h3>
+        return (
+            <div key={note.id} className="sidebar--task">
+                <h3 style={styles} onClick={() => props.selectTask(note.id)}>{note.title}</h3>
+                <button onClick={() => props.deleteNote(note.id)}>X</button>
+            </div>
+        )
     })
 
     return(

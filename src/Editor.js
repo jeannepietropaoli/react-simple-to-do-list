@@ -4,7 +4,7 @@ function Editor(props) {
     const currentNote = props.notes.find(note => note.selected)
 
     return(
-        <textarea className="editor" onChange={(e) => props.editNote(e, props.currentNoteId)} value={currentNote ? currentNote.body : "nope nothing"}/>
+        <textarea placeholder="Note's title" className="editor" onChange={(e) => props.editNote(e, props.currentNoteId)} value={currentNote ? currentNote.body : "Select a task"}/>
     )
 }
 
