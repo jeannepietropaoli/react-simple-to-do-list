@@ -2,7 +2,10 @@ import React from "react";
 
 function Sidebar(props) {
     const noteTitleElements = props.notes.map(note => {
-        return <h3 key={note.id} onClick={() => props.selectTask(note.id)}>{note.title}</h3>
+        const styles = {
+            backgroundColor : note.selected ? "red" : "green"
+        }
+        return <h3 style={styles} key={note.id} onClick={() => props.selectTask(note.id)}>{note.title}</h3>
     })
 
     return(
