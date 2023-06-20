@@ -17,12 +17,9 @@ function App() {
     return matches === null ? note.title : matches[0]
   }
 
-  console.log(JSON.parse(localStorage.getItem("notes")))
-  console.log(notes)
-
-  function createNewNote() {
+  function createNewNote(title) {
     const newNote = {
-      title : `Note ${notes.length + 1}`,
+      title : title || `Note ${notes.length + 1}`,
       body : "",
       id : nanoid(),
       selected : false

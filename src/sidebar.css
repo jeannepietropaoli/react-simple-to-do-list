@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,500;0,600;0,700;0,800;1,300;1,400&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+.sidebar {
+    font-family: 'Karla', sans-serif;
+    grid-area: 1 / 1 / -1 / 2;
+    background-color: #333333;
+    color: white;
+    width: 240px;
+}
+
+.sidebar > * {
+    padding: 10px;
+}
+
+.sidebar--logo-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #404040;
+}
+
+.sidebar--app-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    color: #1CFF70;
+    margin: 0;
+}
+
+#sidebar--logo {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.sidebar--new-project {
+    display: flex;
+    gap: 10px;
+}
+
+#sidebar--new-project-title {
+    background-color: transparent;
+    border-width: 0px;
+    border-bottom: 2px solid #1CFF70;
+    color: white;
+    flex-grow: 1;
+}
+
+#sidebar--add-project-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: #1CFF70;
+    color: white;
+    font-weight: 900;
+    cursor: pointer;
+    position: relative;
+}
+
+#sidebar--add-project-button > img {
+    width: 55%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+}
+
+#sidebar--add-project-button:hover {
+    transform: rotate(-180deg);
+    transition: 0.5s;
+    bottom: 2px;
+}
+
+.sidebar--project-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar--project-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.sidebar--project-title:hover {
+    border: 1px solid #1CFF70;
+}
+
+.sidebar--project-title > h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sidebar--project-title > img {
+    height: 22px;
+    width: auto;
+    cursor: pointer;
+}
+
+
+
+#projectName {
+    background-color: transparent;
+    border-width: 0px;
+    border-bottom: 2px solid #1CFF70;
+    color: white;
+    flex-grow: 1;
+}
+
+.addProject {
+    width: 30px;
+    height: 30px;
+   border-radius: 50%;
+   border: none;
+   background-color: #1CFF70;
+   color: white;
+   font-weight: 900;
+   cursor: pointer;
+   position: relative;
+}
+
+.addProject:hover{
+    transform: rotate(-180deg);
+    transition: 0.5s;
+    bottom: 2px;
+    
+}
+
+.addProject img {
+    width: 55%;
+    height: auto;
+    position: absolute;
+    top: 50%; right: 50%;
+    transform: translate(50%,-50%);
+}
+
+.addProjectContainer {
+    display: flex;
+    gap: 10px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+}
+
+li h4 {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.projectSection li:hover {
+    cursor: pointer;
+    border: 1px solid #1CFF70;
+
+}
+
+li img {
+    height: 22px;
+    width: auto;
+}
+
+#projectList {
+    padding: 0px;
+}
