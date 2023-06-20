@@ -5,59 +5,21 @@ import { nanoid } from "nanoid";
 
 function App() {
   const [projects, setProjects] = React.useState(JSON.parse(localStorage.getItem("projects")) || [])
-  const [currentProjectId, setCurrentProjectId] = React.useState(projects.find(project => project.selected)?.id || null)
-
-  console.log(projects)
+  const [currentProject, setCurrentProject] = React.useState(findCurrentProject())
 
   React.useEffect(() => {
     localStorage.setItem("projects", JSON.stringify(projects))
+    setCurrentProject(findCurrentProject())
   }, [projects])
 
-  function exportProjectTitle(noteBody, project) {
-    const regex = /^.*(?=\n)/g
-    const matches = noteBody.match(regex)
-    return matches === null ? project.title : matches[0]
-  }
 
-  function submitNewTask(newTask, projectId) {
-    console.log('insidesubmitnewtask')
-    console.log(projectId)
-    setProjects(prevProjects => {
-      return prevProjects.map(prevProject => {
-        return prevProject.id === projectId
-          ? {...prevProject, tasks : [...prevProject.tasks, newTask]}
-          : prevProject
-      })
-    })
-  }
-
-  function deleteTask(taskId) {
-    setProjects(prevProjects => {
-      return prevProjects.map(prevProject => {
-        return prevProject.id === currentProjectId
-        ? {...prevProject, tasks : prevProject.tasks.filter(task => task.id !== taskId)}
-        : prevProject
-      })
-    })
-  }
-
-  function editTask(e, taskId) {
-    setProjects(prevProjects => {
-      return prevProjects.map(prevProject => {
-        console.log('here')
-        console.log(currentProjectId)
-        console.log(prevProject.id)
-        return prevProject.id === currentProjectId
-        ? {...prevProject, tasks : prevProject.tasks.map(prevTask => prevTask.id === taskId ? {...prevTask, [e.target.name] :e.target.value} : prevTask)}
-        : prevProject
-      })
-    })
+  function findCurrentProject() {
+    return projects.find(project => project.selected) || null
   }
 
   function createNewProject(title) {
     const newProject = {
       title : title || `Project ${projects.length + 1}`,
-      body : "",
       id : nanoid(),
       selected : false,
       tasks : []
@@ -75,29 +37,49 @@ function App() {
           : {...prevProject, selected : false}
       })
     })
-    setCurrentProjectId(projectId)
   }
 
-  /* function editNote(e, noteId) {
-    setNotes(prevNotes => {
-      return prevNotes.map(prevNote => {
-        return prevNote.id === noteId
-          ? {...prevNote, body : e.target.value, title : exportNoteTitle(e.target.value, prevNote)}
-          : prevNote
+  function deleteProject(projectId) {
+    setProjects(prevProjects => {
+      return prevProjects.filter(prevProject => prevProject.id !== projectId)
+    })
+  }
+
+  function createNewTask(newTask) {
+    setProjects(prevProjects => {
+      return prevProjects.map(prevProject => {
+        return prevProject.id === currentProject.id
+          ? {...prevProject, tasks : [...prevProject.tasks, newTask]}
+          : prevProject
       })
     })
-  } */
+  }
 
-  function deleteProject(projectId) {
-    return setProjects(prevProjects => {
-      return prevProjects.filter(prevProject => prevProject.id !== projectId)
+  function deleteTask(taskId) {
+    setProjects(prevProjects => {
+      return prevProjects.map(prevProject => {
+        return prevProject.id === currentProject.id
+        ? {...prevProject, tasks : prevProject.tasks.filter(task => task.id !== taskId)}
+        : prevProject
+      })
+    })
+  }
+
+  function editTask(e, taskId) {
+    const editedFieldContent = e.target.value
+    setProjects(prevProjects => {
+      return prevProjects.map(prevProject => {
+        return prevProject.id === currentProject.id
+        ? {...prevProject, tasks : prevProject.tasks.map(prevTask => prevTask.id === taskId ? {...prevTask, [e.target.name] : editedFieldContent} : prevTask)}
+        : prevProject
+      })
     })
   }
 
   return (
     <div className="app">
       <Sidebar createNewProject={createNewProject} selectProject={selectProject} deleteProject={deleteProject} projects={projects} />
-      <Editor editTask={editTask} deleteTask={deleteTask} submitNewTask={submitNewTask} projects={projects} currentProjectId={currentProjectId} />
+      <Editor createNewTask={createNewTask} editTask={editTask} deleteTask={deleteTask} currentProject={currentProject} />
     </div>
   );
 }
