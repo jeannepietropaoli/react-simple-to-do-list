@@ -1,0 +1,52 @@
+.formContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(220,220,220, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+form {
+    width: 500px;
+    max-width: 100%;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 5px 3px lightgray;
+    padding: 20px;
+    background-color: white;
+}
+
+.formFields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formField {
+    display: flex;
+    gap: 15px;
+}
+
+#submit {
+    margin-top: 15px;
+    border: 2px solid #1CFF70;
+    color: #1CFF70;
+    font-weight: 900;
+    background-color: white;
+    padding: 8px 25px;
+    border-radius: 5px;
+    box-shadow: 2px 5px 3px lightgray;
+    cursor: pointer;
+    position: relative;
+    bottom: 0px;
+    transition: bottom 0.1s;
+}
+
+#closeForm {
+    cursor: pointer;
+}

@@ -5,14 +5,14 @@ import plus from "./assets/plus.png"
 import deleteProject from "./assets/deleteProject.png"
 
 function Sidebar(props) {
-    const noteTitleElements = props.notes.map(note => {
+    const noteTitleElements = props.projects.map(project => {
         const styles = {
-            backgroundColor : note.selected ? "darkGray" : "transparent"
+            backgroundColor : project.selected ? "darkGray" : "transparent"
         }
         return (
-            <div style={styles} key={note.id} onClick={() => props.selectTask(note.id)} className="sidebar--project-title">
-                <h3 >{note.title}</h3>
-                <img src={deleteProject} onClick={() => props.deleteNote(note.id)} />
+            <div style={styles} key={project.id} onClick={() => props.selectProject(project.id)} className="sidebar--project-title">
+                <h3 >{project.title}</h3>
+                <img src={deleteProject} onClick={() => props.deleteProject(project.id)} />
             </div>
         )
     })
@@ -28,7 +28,7 @@ function Sidebar(props) {
             <div className="sidebar--new-project">
                 <input value={newProjectTitle} onChange={(e) => setNewProjectTitle(e.target.value)} id="sidebar--new-project-title" type="text" placeholder="Your new project ..." />
                 <button id="sidebar--add-project-button" onClick={() => {
-                    props.createNewNote(newProjectTitle)
+                    props.createNewProject(newProjectTitle)
                     setNewProjectTitle("")
                     }}>
                     <img alt="plus logo" src={plus} />
